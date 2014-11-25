@@ -12,4 +12,4 @@ tp = TargetProcess.new(username: options[:username], password: options[:password
 stories = tp.user_stories(options[:team])
 history = stories.flat_map {|s| tp.story_history(s["Id"]) }
 
-puts CumulativeFlow.new(history, iteration_start: options[:day]).to_csv
+puts CumulativeFlow.new(history, iteration_start: options[:day], states: options[:states]).to_csv
