@@ -4,8 +4,8 @@ require 'set'
 
 class CumulativeFlow
 
-  def initialize(user_story_history, states: nil)
-    @data = dates(user_story_history).map {|date| {"Date" => date}.merge(effort_by_state(snapshot(user_story_history, date))) }
+  def initialize(user_story_history, states: nil, iteration_start: nil)
+    @data = dates(user_story_history, iteration_start).map {|date| {"Date" => date}.merge(effort_by_state(snapshot(user_story_history, date))) }
     @states = states || all_states(user_story_history)
   end
 
@@ -38,14 +38,8 @@ class CumulativeFlow
     history.reduce(Set.new) {|states, i| states << i["EntityState"]["Name"] }.to_a
   end
 
-  def last_tuesday
-    d = Date.today
-    d = d-1 while not d.tuesday?
-    d
-  end
-
-  def dates(history)
-    start = last_tuesday
+  def dates(history, iteration_start)
+    start = Date.parse iteration_start
     stop = history.map {|i| i["Date"]}.min
     dates = start.step(stop, -7).to_a.reverse
   end

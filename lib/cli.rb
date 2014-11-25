@@ -33,6 +33,12 @@ module Cli
       opts.on("--states STATES", "included states, separated by commas") do |states|
         options[:states] = states.split(',').map(&:chomp)
       end
+
+      options[:day] = "tuesday"
+      opts.on("-d", "--day DAY", %w{monday tuesday wednesday thursday friday saturday sunday},
+              "day of week used as iteration start (defaults to tuesday)") do |day|
+        options[:day] = day
+      end
     end.parse!(args)
 
     options
