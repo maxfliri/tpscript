@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 
-require_relative 'lib/target_process'
-require_relative 'lib/enumerable_ext'
-require_relative 'lib/cli'
-require_relative 'lib/cumulative_flow'
+require_relative '../lib/target_process'
+require_relative '../lib/enumerable_ext'
+require_relative '../lib/cli'
+require_relative '../lib/cumulative_flow'
 
 options = Cli.options!
 
