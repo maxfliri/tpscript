@@ -22,10 +22,6 @@ module Cli
         options[:username] = username
       end
 
-      opts.on("-p", "--password PASSWORD", "(required) password to log on TargetProcess") do |password|
-        options[:password] = password
-      end
-
       opts.on("-b", "--base-uri URI", "(required) URI of TargetProcess") do |uri|
         options[:base_uri] = uri
       end
@@ -41,6 +37,25 @@ module Cli
       end
     end.parse!(args)
 
+    unless options[:username] then
+      options[:username] = get_input("Username: ")
+    end
+
+    options[:password] = get_input("Password: ", echo: false)
+
     options
+  end
+
+  private
+
+  def self.get_input(prompt, echo: true)
+    $stderr.print prompt
+    if echo then
+      $stdin.gets.chomp
+    else
+      input = $stdin.noecho(&:gets).chomp
+      puts
+      input
+    end
   end
 end
