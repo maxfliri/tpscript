@@ -1,3 +1,8 @@
+PATH
+  remote: .
+  specs:
+    tpscript (0.0.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -5,14 +10,14 @@ GEM
       json (~> 1.8)
       multi_xml (>= 0.5.2)
     json (1.8.1)
-    mini_portile (0.6.1)
     multi_xml (0.5.5)
-    nokogiri (1.6.4)
-      mini_portile (~> 0.6.0)
+    rake (10.1.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  httparty
-  nokogiri
+  bundler (~> 1.6)
+  httparty (= 0.13.2)
+  rake
+  tpscript!

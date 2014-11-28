@@ -1,3 +1,4 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
-gem "httparty"
+# Specify your gem's dependencies in tpscript.gemspec
+gemspec
