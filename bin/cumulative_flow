@@ -7,7 +7,7 @@ require_relative '../lib/cumulative_flow'
 
 options = Cli.options!
 
-tp = TargetProcess.new(username: options[:username], password: options[:password], base_uri: options[:base_uri])
+tp = TargetProcess.new(username: options[:username], password: options[:password], base_uri: options[:base_uri], verify_ssl_certs: options[:verify])
 
 stories = tp.user_stories(options[:team])
 history = stories.flat_map {|s| tp.story_history(s["Id"]) }

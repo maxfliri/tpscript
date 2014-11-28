@@ -35,6 +35,12 @@ module Cli
               "day of week used as iteration start (defaults to tuesday)") do |day|
         options[:day] = day
       end
+
+      options[:verify] = true
+      opts.on("--[no-]verify", "verify ssl certificates") do |verify|
+        options[:verify] = verify
+      end
+
     end.parse!(args)
 
     unless options[:username] then

@@ -5,10 +5,11 @@ require 'uri'
 
 class TargetProcess
 
-  def initialize(username: nil, password: nil, base_uri: nil)
+  def initialize(username: nil, password: nil, base_uri: nil, verify_ssl_certs: true)
     @username = username
     @password = password
     @base_uri = base_uri
+    @verify_ssl_certs = verify_ssl_certs
   end
 
   def user_stories(team_abbr)
@@ -38,7 +39,7 @@ class TargetProcess
 
   def get(url)
     $stderr.puts "Getting #{url}..."
-    response = HTTParty.get(url, basic_auth: {username: @username, password: @password})
+    response = HTTParty.get(url, basic_auth: {username: @username, password: @password}, verify: @verify_ssl_certs)
     JSON.parse(response.body)
   end
 
