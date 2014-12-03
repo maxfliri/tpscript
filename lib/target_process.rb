@@ -12,8 +12,8 @@ class TargetProcess
     @verify_ssl_certs = verify_ssl_certs
   end
 
-  def user_stories(team_abbr)
-    get_items "#{@base_uri}/api/v1/UserStories?format=json&where=Team.Abbreviation%20eq%20%27#{team_abbr}%27"
+  def user_stories(options)
+    get_items "#{@base_uri}/api/v1/UserStories?format=json&where=#{filter(options)}"
   end
 
   def story_history(id)
@@ -21,6 +21,10 @@ class TargetProcess
   end
 
   private
+
+  def filter(options)
+    URI.encode_www_form_component(options.map {|k,v| "(#{k} eq '#{v}')"}.join(" and "))
+  end
 
   def parse_date(date)
     match = /\/Date\(([0-9]+)([+-][0-9]+)\)\//.match date

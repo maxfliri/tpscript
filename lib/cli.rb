@@ -18,6 +18,10 @@ module Cli
         options[:team] = team
       end
 
+      opts.on("-p", "--project PROJ_ABBREVIATION", "(required) select a project to filter the data") do |project|
+        options[:project] = project
+      end
+
       opts.on("-u", "--username USERNAME", "(required) username to log on TargetProcess") do |username|
         options[:username] = username
       end

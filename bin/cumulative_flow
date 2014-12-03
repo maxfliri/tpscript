@@ -9,7 +9,9 @@ options = Cli.options!
 
 tp = TargetProcess.new(username: options[:username], password: options[:password], base_uri: options[:base_uri], verify_ssl_certs: options[:verify])
 
-stories = tp.user_stories(options[:team])
+stories = tp.user_stories("Team.Abbreviation" => options[:team],
+                          "Project.Abbreviation" => options[:project])
+
 history = stories.flat_map {|s| tp.story_history(s["Id"]) }
 
 puts CumulativeFlow.new(history, iteration_start: options[:day], states: options[:states]).to_csv
