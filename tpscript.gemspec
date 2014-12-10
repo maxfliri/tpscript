@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["mfliri@thoughtworks.com"]
   spec.summary       = %q{Scripts for TargetProcess}
   spec.description   = %q{Scripts for TargetProcess}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/maxfliri/tpscript"
   spec.license       = "MIT"
   spec.required_ruby_version = "~> 2.1"
 
