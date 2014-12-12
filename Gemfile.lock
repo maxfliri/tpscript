@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    tpscript (0.0.2)
+    tpscript (0.0.3)
       httparty (~> 0.13)
 
 GEM
